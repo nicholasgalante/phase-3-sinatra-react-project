@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_19_192849) do
+ActiveRecord::Schema.define(version: 2023_03_19_193455) do
 
   create_table "flashcards", force: :cascade do |t|
     t.string "title"
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "study_set_id"
   end
 
   create_table "study_sets", force: :cascade do |t|
