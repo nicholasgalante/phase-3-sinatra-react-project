@@ -1,8 +1,8 @@
 
-function StudySetCard(){
+function StudySetCard({set}){
    return(
       <>
-         Study Set
+        {set.title}
       </>
    )
 }

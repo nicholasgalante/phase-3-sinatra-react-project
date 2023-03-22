@@ -3,6 +3,7 @@ function NavBar(){
    return(
       <>
       QuizMe
+      Your Study Sets
       </>
    )
 }

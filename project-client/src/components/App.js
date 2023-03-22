@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
+import StudySetCard from "./StudySetCard";
 
 function App() {
   const [studySets, setStudySets] = useState([])
@@ -10,12 +11,16 @@ function App() {
       .then(data => setStudySets(data))
   })
 
-
+  const displayStudySets = studySets.map(set => {
+    return <StudySetCard key={set.id} set={set}/>
+  })
 
   return (
     <div>
       <NavBar/>
-      Your Study Sets: 
+          Your Study Sets: 
+          {displayStudySets}
+
     </div>
   );
 }
