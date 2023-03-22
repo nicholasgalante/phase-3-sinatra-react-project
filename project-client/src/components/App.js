@@ -10,7 +10,7 @@ function App() {
     fetch("http://localhost:9292/study_sets")
       .then((res) => res.json())
       .then((data) => setStudySets(data));
-  });
+  },[]);
 
   const displayStudySets = studySets.map((set) => {
     return <StudySetCard key={set.id} set={set} />;
@@ -21,8 +21,9 @@ function App() {
       <NavBar />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={displayStudySets} />
-          <Route path="/hola" element={"Hola Mundo"}/>
+          <Route path="/study_sets" element={displayStudySets} />
+          <Route path="/study_sets/edit/*" element={`Edit Study Set`}/>
+          <Route path="/study_sets/flashcards/*" element={`View Flashcards for Study set`}/>
         </Routes>
       </BrowserRouter>
     </div>
@@ -30,3 +31,38 @@ function App() {
 }
 
 export default App;
+
+
+
+// import {
+//   BrowserRouter,
+//   Routes,
+//   Route,
+//   Link,
+// } from "react-router-dom";
+
+// function App() {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         <Route path="/" element={<Home />} />
+//         <Route path="users/*" element={<Users />} />
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// }
+
+// function Users() {
+//   return (
+//     <div>
+//       <nav>
+//         <Link to="me">My Profile</Link>
+//       </nav>
+
+//       <Routes>
+//         <Route path=":id" element={<UserProfile />} />
+//         <Route path="me" element={<OwnUserProfile />} />
+//       </Routes>
+//     </div>
+//   );
+// }
