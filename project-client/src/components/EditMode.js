@@ -14,6 +14,14 @@ function EditMode() {
       .then((data) => setActiveStudySet(data));
   }, [setId]);
   
+  function onEditField(e){
+   const date = new Date().toJSON();
+   setFormData({
+      ...activeStudySet,
+      [e.target.name] : e.target.value,
+      updated_at : date,
+   })
+  }
 
 
   return (
