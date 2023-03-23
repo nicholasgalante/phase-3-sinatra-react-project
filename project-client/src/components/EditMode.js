@@ -22,13 +22,17 @@ function EditMode() {
       updated_at : date,
    })
   }
-
+  
+  function handleSubmit(e){
+   e.preventDefault();
+   console.log(formData)
+  }
 
   return (
     <>
       {title}
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <input name="title" type="text" onChange={(e) => onEditField(e)}></input>
         <input name="content" type="text" onChange={(e) => onEditField(e)}></input>
         <button type="submit">Add New Flashcard</button>
