@@ -18,5 +18,3 @@ function StudySetCard({ set }) {
 
 export default StudySetCard;
 
-//      <Route path=":id" element={<UserProfile />} />
-// <Link to="me">My Profile</Link>

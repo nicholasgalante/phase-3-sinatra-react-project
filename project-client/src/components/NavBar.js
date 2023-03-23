@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 
-function NavBar(){
-   return(
-      <>
+function NavBar() {
+  return (
+    <>
       QuizMe
-      Your Study Sets
-      </>
-   )
+      View Your Study Sets
+    </>
+  );
 }
 
 export default NavBar;

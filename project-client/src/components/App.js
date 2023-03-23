@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./NavBar";
+import EditMode from "./EditMode";
 import StudySetCard from "./StudySetCard";
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/study_sets" element={displayStudySets} />
-          <Route path="/study_sets/edit/*" element={`Edit Study Set`}/>
+          <Route path="/study_sets/edit/*" element={<EditMode/>}/>
           <Route path="/study_sets/study/*" element={`View Flashcards for Study set`}/>
         </Routes>
       </BrowserRouter>
