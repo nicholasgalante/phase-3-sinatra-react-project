@@ -2,20 +2,31 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function EditMode() {
-  const [activeStudySet, setActiveStudySet] = useState([]);
+  const [activeStudySet, setActiveStudySet] = useState({});
+  const [formData, setFormData] = useState({});
 
   const { title } = activeStudySet;
   const { setId } = useParams();
-
-  console.log(setId);
 
   useEffect(() => {
     fetch(`http://localhost:9292/study_sets/${setId}`)
       .then((res) => res.json())
       .then((data) => setActiveStudySet(data));
   }, [setId]);
+  
 
-  return <>{title}</>;
+
+  return (
+    <>
+      {title}
+
+      <form>
+        <input name="title" type="text" onChange={(e) => onEditField(e)}></input>
+        <input name="content" type="text" onChange={(e) => onEditField(e)}></input>
+        <button type="submit">Add New Flashcard</button>
+      </form>
+    </>
+  );
 }
 
 export default EditMode;
