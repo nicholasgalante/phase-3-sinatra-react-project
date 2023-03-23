@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/study_sets" element={displayStudySets} />
           <Route path="/study_sets/edit/*" element={`Edit Study Set`}/>
-          <Route path="/study_sets/flashcards/*" element={`View Flashcards for Study set`}/>
+          <Route path="/study_sets/study/*" element={`View Flashcards for Study set`}/>
         </Routes>
       </BrowserRouter>
     </div>
