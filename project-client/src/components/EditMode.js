@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Flashcard from "./Flashcard";
 
@@ -33,7 +33,7 @@ function EditMode() {
 
   function displayFlashCards() {
     if (activeStudySet.flashcards) {
-      activeStudySet.flashcards.map((card) => {
+      return activeStudySet.flashcards.map((card) => {
         return <Flashcard card={card} key={card.id}/>
       });
     }
