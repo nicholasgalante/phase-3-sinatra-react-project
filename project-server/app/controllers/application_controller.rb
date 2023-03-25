@@ -10,6 +10,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/study_sets/:id" do
-    StudySet.find(params[:id]).to_json
+    StudySet.find(params[:id]).to_json(include: :flashcards)
   end
 end

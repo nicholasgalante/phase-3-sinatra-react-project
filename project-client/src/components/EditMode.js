@@ -18,8 +18,8 @@ function EditMode() {
    const date = new Date().toJSON();
    setFormData({
       ...activeStudySet,
-      [e.target.name] : e.target.value,
       updated_at : date,
+      // activeStudySet[flashcards]
    })
   }
   
@@ -27,6 +27,10 @@ function EditMode() {
    e.preventDefault();
    console.log(formData)
   }
+
+  console.log(activeStudySet)
+
+//   const displayFlashCards = activeStudySet.flashcards.map(card =>{return card})
 
   return (
     <>
@@ -37,6 +41,8 @@ function EditMode() {
         <input name="content" type="text" onChange={(e) => onEditField(e)}></input>
         <button type="submit">Add New Flashcard</button>
       </form>
+
+      {/* {displayFlashCards} */}
     </>
   );
 }
