@@ -10,12 +10,11 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/flashcards" do
-    flashcard = Flashard.create(
+    Flashcard.create(
       title: params[:title],
       content: params[:content],
       study_set_id: params[:study_set_id],
-    )
-    flashcard.to_json
+    ).to_json
   end
 
   get "/study_sets/:id" do
@@ -29,7 +28,6 @@ class ApplicationController < Sinatra::Base
   delete "/flashcards/:id" do
     Flashcard.find(params[:id]).destroy.to_json
   end
-
 end
 
 # post '/messages' do

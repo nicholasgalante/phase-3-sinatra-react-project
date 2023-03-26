@@ -6,8 +6,6 @@ function EditMode({ onDeleteStudySet }) {
   const [activeStudySet, setActiveStudySet] = useState({});
   const [formData, setFormData] = useState({});
 
-  console.log("ACTIVE STUDY SET", activeStudySet);
-
   const { title } = activeStudySet;
   const { setId } = useParams();
 
@@ -38,7 +36,8 @@ function EditMode({ onDeleteStudySet }) {
       body: JSON.stringify(formData),
     })
       .then((r) => r.json())
-      .then((newFlashcard) => console.log(newFlashcard));
+      .then((newFlashcard) => console.log(newFlashcard))
+      .catch((error) => console.error("Error occurred during fetch:", error));
   }
 
   function handleDeleteStudySet() {
