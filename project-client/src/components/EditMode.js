@@ -16,7 +16,6 @@ function EditMode({ onDeleteStudySet }) {
   }, [setId]);
 
   function onEditField(e) {
-    //  const date = new Date().toJSON();
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -36,7 +35,7 @@ function EditMode({ onDeleteStudySet }) {
       body: JSON.stringify(formData),
     })
       .then((r) => r.json())
-      .then((newFlashcard) => console.log(newFlashcard))
+      .then((newFlashcard) => onAddFlashcard(newFlashcard))
       .catch((error) => console.error("Error occurred during fetch:", error));
   }
 
@@ -45,6 +44,15 @@ function EditMode({ onDeleteStudySet }) {
       method: "DELETE",
     });
     onDeleteStudySet(setId);
+  }
+
+  function onAddFlashcard(newFlashcard) {
+    setActiveStudySet((prevStudySet) => {
+      return {
+        ...prevStudySet,
+        flashcards: [...prevStudySet.flashcards, newFlashcard],
+      };
+    });
   }
 
   function onDeleteFlashcard(id) {
