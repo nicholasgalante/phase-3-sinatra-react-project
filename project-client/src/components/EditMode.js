@@ -50,11 +50,10 @@ function EditMode({ onDeleteStudySet }) {
 
   function onDeleteFlashcard(id) {
     setActiveStudySet((prevStudySet) => {
-      let newStudySet = { ...prevStudySet };
-      newStudySet.flashcards = newStudySet.flashcards.filter(
+      const newFlashcards = prevStudySet.flashcards.filter(
         (flashcard) => flashcard.id !== id
       );
-      return newStudySet;
+      return { ...prevStudySet, flashcards: newFlashcards };
     });
   }
 
