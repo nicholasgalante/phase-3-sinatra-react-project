@@ -6,6 +6,8 @@ function EditMode({ onDeleteStudySet }) {
   const [activeStudySet, setActiveStudySet] = useState({});
   const [formData, setFormData] = useState({});
 
+  console.log("ACTIVE STUDY SET", activeStudySet);
+
   const { title } = activeStudySet;
   const { setId } = useParams();
 
@@ -46,10 +48,26 @@ function EditMode({ onDeleteStudySet }) {
     onDeleteStudySet(setId);
   }
 
+  function onDeleteFlashcard(id) {
+    setActiveStudySet((prevStudySet) => {
+      let newStudySet = { ...prevStudySet };
+      newStudySet.flashcards = newStudySet.flashcards.filter(
+        (flashcard) => flashcard.id !== id
+      );
+      return newStudySet;
+    });
+  }
+
   function displayFlashCards() {
     if (activeStudySet.flashcards) {
       return activeStudySet.flashcards.map((card) => {
-        return <Flashcard card={card} key={card.id} />;
+        return (
+          <Flashcard
+            card={card}
+            key={card.id}
+            onDeleteFlashcard={onDeleteFlashcard}
+          />
+        );
       });
     }
   }
