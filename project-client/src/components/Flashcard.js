@@ -6,6 +6,8 @@ function Flashcard({ card }) {
     <>
       {title}
       {content}
+      <button>Edit</button>
+      <button>Delete</button>
     </>
   );
 }

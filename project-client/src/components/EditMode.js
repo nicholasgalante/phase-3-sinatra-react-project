@@ -16,25 +16,33 @@ function EditMode() {
   }, [setId]);
 
   function onEditField(e) {
-    const date = new Date().toJSON();
+    //  const date = new Date().toJSON();
     setFormData({
-      ...activeStudySet,
-      updated_at: date,
-      // activeStudySet[flashcards]
+      ...formData,
+      [e.target.name]: e.target.value,
+      study_set_id: setId,
     });
+    console.log(formData);
+    console.log(JSON.stringify(formData))
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(formData);
+    fetch("http://localhost:9292/flashcards", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((r) => r.json())
+      .then((newFlashcard) => console.log(newFlashcard));
   }
-
-  console.log(activeStudySet.flashcards);
 
   function displayFlashCards() {
     if (activeStudySet.flashcards) {
       return activeStudySet.flashcards.map((card) => {
-        return <Flashcard card={card} key={card.id}/>
+        return <Flashcard card={card} key={card.id} />;
       });
     }
   }
@@ -42,22 +50,25 @@ function EditMode() {
   return (
     <>
       {title}
-
       <form onSubmit={handleSubmit}>
         <input
           name="title"
           type="text"
           onChange={(e) => onEditField(e)}
+          placeholder="Title"
         ></input>
         <input
           name="content"
           type="text"
+          placeholder="Content"
           onChange={(e) => onEditField(e)}
         ></input>
         <button type="submit">Add New Flashcard</button>
       </form>
 
       {displayFlashCards()}
+
+      <button>Delete Study Set</button>
     </>
   );
 }
