@@ -21,6 +21,15 @@ class ApplicationController < Sinatra::Base
   get "/study_sets/:id" do
     StudySet.find(params[:id]).to_json(include: :flashcards)
   end
+
+  delete "/study_sets/:id" do
+    StudySet.find(params[:id]).destroy.to_json
+  end
+
+  delete "/flashcards/:id" do
+    Flashcard.find(params[:id]).destroy.to_json
+  end
+
 end
 
 # post '/messages' do

@@ -14,6 +14,11 @@ function App() {
       .then((data) => setStudySets(data));
   },[]);
 
+  function handleDeleteStudySet(id){
+    const updatedStudySets = studySets.filter(studySet => studySet.id !== id);
+    setStudySets(updatedStudySets);
+  }
+
   const displayStudySets = studySets.map((set) => {
     return <StudySetCard key={set.id} set={set} />;
   });
@@ -24,7 +29,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/study_sets" element={displayStudySets} />
-          <Route path="/study_sets/edit/:setId" element={<EditMode/>}/>
+          <Route path="/study_sets/edit/:setId" element={<EditMode onDeleteStudySet={handleDeleteStudySet}/>}/>
           <Route path="/study_sets/study/*" element={<StudyMode/>}/>
         </Routes>
       </BrowserRouter>

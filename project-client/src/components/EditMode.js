@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Flashcard from "./Flashcard";
 
-function EditMode() {
+function EditMode({ onDeleteStudySet }) {
   const [activeStudySet, setActiveStudySet] = useState({});
   const [formData, setFormData] = useState({});
 
@@ -23,7 +23,7 @@ function EditMode() {
       study_set_id: setId,
     });
     console.log(formData);
-    console.log(JSON.stringify(formData))
+    console.log(JSON.stringify(formData));
   }
 
   function handleSubmit(e) {
@@ -37,6 +37,13 @@ function EditMode() {
     })
       .then((r) => r.json())
       .then((newFlashcard) => console.log(newFlashcard));
+  }
+
+  function handleDeleteStudySet() {
+    fetch(`http://localhost:9292/study_sets/${setId}`, {
+      method: "DELETE",
+    });
+    onDeleteStudySet(setId);
   }
 
   function displayFlashCards() {
@@ -68,7 +75,7 @@ function EditMode() {
 
       {displayFlashCards()}
 
-      <button>Delete Study Set</button>
+      <button onClick={handleDeleteStudySet}>Delete Study Set</button>
     </>
   );
 }
