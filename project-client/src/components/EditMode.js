@@ -21,7 +21,6 @@ function EditMode({ onDeleteStudySet }) {
       [e.target.name]: e.target.value,
       study_set_id: setId,
     });
-    console.log(formData);
     console.log(JSON.stringify(formData));
   }
 
@@ -37,6 +36,7 @@ function EditMode({ onDeleteStudySet }) {
       .then((r) => r.json())
       .then((newFlashcard) => onAddFlashcard(newFlashcard))
       .catch((error) => console.error("Error occurred during fetch:", error));
+   e.target.reset();
   }
 
   function handleDeleteStudySet() {
