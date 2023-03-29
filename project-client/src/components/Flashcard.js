@@ -14,7 +14,6 @@ function Flashcard({ card, onDeleteFlashcard }) {
     <>
       {title}
       {content}
-      <button>Edit</button>
       <button onClick={handleDelete}>Delete</button>
     </>
   );

@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { NavLink, Router } from "react-router-dom";
 
 function NavBar() {
   return (
     <>
-      QuizMe
-      View Your Study Sets
+    <Router>
+      <NavLink to="/">QuizMe</NavLink>
+      <NavLink to="/study_sets">View Your Study Sets</NavLink>
+   </Router>
     </>
   );
 }
