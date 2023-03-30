@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Flashcard from "./Flashcard";
+import EditFlashcard from "./EditFlashcard";
 
 function EditMode({ onDeleteStudySet }) {
   const [activeStudySet, setActiveStudySet] = useState({});
@@ -68,7 +68,7 @@ function EditMode({ onDeleteStudySet }) {
     if (activeStudySet.flashcards) {
       return activeStudySet.flashcards.map((card) => {
         return (
-          <Flashcard
+          <EditFlashcard
             card={card}
             key={card.id}
             onDeleteFlashcard={onDeleteFlashcard}

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Flashcard({ card, onDeleteFlashcard }) {
+function EditFlashcard({ card, onDeleteFlashcard }) {
   const { title, content, id } = card;
 
   function handleDelete(){
@@ -19,4 +19,4 @@ function Flashcard({ card, onDeleteFlashcard }) {
   );
 }
 
-export default Flashcard;
+export default EditFlashcard;

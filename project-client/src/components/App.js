@@ -25,12 +25,12 @@ function App() {
 
   return (
     <div>
-      <NavBar />
       <BrowserRouter>
+      <NavBar />
         <Routes>
           <Route path="/study_sets" element={displayStudySets} />
           <Route path="/study_sets/edit/:setId" element={<EditMode onDeleteStudySet={handleDeleteStudySet}/>}/>
-          <Route path="/study_sets/study/*" element={<StudyMode/>}/>
+          <Route path="/study_sets/study/*" element={<StudyMode studySets={studySets}/>}/>
         </Routes>
       </BrowserRouter>
     </div>
