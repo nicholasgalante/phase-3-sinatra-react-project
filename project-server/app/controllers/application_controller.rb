@@ -29,11 +29,3 @@ class ApplicationController < Sinatra::Base
     Flashcard.find(params[:id]).destroy.to_json
   end
 end
-
-# post '/messages' do
-#   message = Message.create(
-#     body: params[:body],
-#     username: params[:username]
-#   )
-#   message.to_json
-# end

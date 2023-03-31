@@ -9,6 +9,8 @@ function EditMode({ onDeleteStudySet }) {
   const { title } = activeStudySet;
   const { setId } = useParams();
 
+  console.log("SET ID", setId)
+
   useEffect(() => {
     fetch(`http://localhost:9292/study_sets/${setId}`)
       .then((res) => res.json())
