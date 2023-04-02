@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import StudyFlashcard from "./StudyFlashcard";
 
-function StudyMode({ studySets }) {
-  const [activeStudySet, setActiveStudySet] = useState({});
+function StudyMode() {
+  const [activeStudySet, setActiveStudySet] = useState({
+    id: null,
+    title: null,
+    content: null,
+    flashcards: [{ title: null, content: null }],
+  });
   const [index, setIndex] = useState(1);
 
   const { setId } = useParams();
 
   useEffect(() => {
-    setActiveStudySet(studySets.find((set) => set.id == setId));
-  }, [studySets]);
+    fetch(`http://localhost:9292/study_sets/${setId}`)
+      .then((res) => res.json())
+      .then((data) => setActiveStudySet(data));
+  }, []);
 
   console.log("ACTIVE STUDY SET", activeStudySet);
-
-  if (!activeStudySet) {
-    return "loading!";
-  } //is this good practice?
 
   const { flashcards, title, content } = activeStudySet;
 
@@ -40,7 +44,8 @@ function StudyMode({ studySets }) {
     <>
       You are now in study mode!
       {title}
-      Displaying card {index}
+      Displaying card {index}/{flashcards.length}
+      <StudyFlashcard flashcards={flashcards}/>
       <button onClick={handlePrevious}>Previous</button>
       <button onClick={handleNext}>Next</button>
       <button onClick={handleRandom}>Random</button>
