@@ -17,6 +17,15 @@ function StudyMode({ studySets }) {
     setIndex((prevIndex) => prevIndex + 1);
   }
 
+  function handlePrevious(){
+   setIndex((prevIndex) => prevIndex - 1);
+  }
+
+  function handleRandom(){
+   const randomIndex = Math.floor(Math.random() * activeStudySet.flashcards.length);
+   setIndex(randomIndex)
+  }
+
   if (!activeStudySet) {
     return "loading!";
   } //is this good practice?
@@ -26,8 +35,9 @@ function StudyMode({ studySets }) {
       You are now in study mode!
       {activeStudySet.title}
       Displaying card #{index}
-      <button>Previous</button>
+      <button onClick={handlePrevious}>Previous</button>
       <button onClick={handleNext}>Next</button>
+      <button onClick={handleRandom}>Random</button>
     </>
   );
 }
