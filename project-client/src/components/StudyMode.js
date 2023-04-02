@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 function StudyMode({ studySets }) {
   const [activeStudySet, setActiveStudySet] = useState({});
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(1);
 
   const { setId } = useParams();
 
@@ -13,28 +13,34 @@ function StudyMode({ studySets }) {
 
   console.log("ACTIVE STUDY SET", activeStudySet);
 
-  function handleNext() {
-    setIndex((prevIndex) => prevIndex + 1);
-  }
-
-  function handlePrevious(){
-   setIndex((prevIndex) => prevIndex - 1);
-  }
-
-  function handleRandom(){
-   const randomIndex = Math.floor(Math.random() * activeStudySet.flashcards.length);
-   setIndex(randomIndex)
-  }
-
   if (!activeStudySet) {
     return "loading!";
   } //is this good practice?
 
+  const { flashcards, title, content } = activeStudySet;
+
+  function handleNext() {
+    setIndex((prevIndex) => {
+      return prevIndex < flashcards.length ? prevIndex + 1 : 1;
+    });
+  }
+
+  function handlePrevious() {
+    setIndex((prevIndex) => {
+      return prevIndex == 1 ? flashcards.length : prevIndex - 1;
+    });
+  }
+
+  function handleRandom() {
+    const randomIndex = Math.floor(Math.random() * flashcards.length) + 1;
+    setIndex(randomIndex);
+  }
+
   return (
     <>
       You are now in study mode!
-      {activeStudySet.title}
-      Displaying card #{index}
+      {title}
+      Displaying card {index}
       <button onClick={handlePrevious}>Previous</button>
       <button onClick={handleNext}>Next</button>
       <button onClick={handleRandom}>Random</button>
