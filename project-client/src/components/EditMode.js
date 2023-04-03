@@ -21,7 +21,6 @@ function EditMode({ onDeleteStudySet }) {
       [e.target.name]: e.target.value,
       study_set_id: setId,
     });
-    console.log(JSON.stringify(formData));
   }
 
   function handleSubmit(e) {
