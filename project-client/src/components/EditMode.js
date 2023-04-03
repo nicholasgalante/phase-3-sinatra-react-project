@@ -9,8 +9,6 @@ function EditMode({ onDeleteStudySet }) {
   const { title } = activeStudySet;
   const { setId } = useParams();
 
-  console.log("SET ID", setId)
-
   useEffect(() => {
     fetch(`http://localhost:9292/study_sets/${setId}`)
       .then((res) => res.json())
@@ -38,7 +36,7 @@ function EditMode({ onDeleteStudySet }) {
       .then((r) => r.json())
       .then((newFlashcard) => onAddFlashcard(newFlashcard))
       .catch((error) => console.error("Error occurred during fetch:", error));
-   e.target.reset();
+    e.target.reset();
   }
 
   function handleDeleteStudySet() {
@@ -70,11 +68,9 @@ function EditMode({ onDeleteStudySet }) {
     if (activeStudySet.flashcards) {
       return activeStudySet.flashcards.map((card) => {
         return (
-          <EditFlashcard
-            card={card}
-            key={card.id}
-            onDeleteFlashcard={onDeleteFlashcard}
-          />
+          <div key={card.id}>
+            <EditFlashcard card={card} onDeleteFlashcard={onDeleteFlashcard} />
+          </div>
         );
       });
     }

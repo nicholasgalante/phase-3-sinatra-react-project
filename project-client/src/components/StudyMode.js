@@ -19,8 +19,6 @@ function StudyMode() {
       .then((data) => setActiveStudySet(data));
   }, []);
 
-  console.log("ACTIVE STUDY SET", activeStudySet);
-
   const { flashcards, title, content } = activeStudySet;
 
   function handleNext() {
@@ -40,16 +38,20 @@ function StudyMode() {
     setIndex(randomIndex);
   }
 
+  const activeFlashcard = flashcards[index - 1];
+
   return (
-    <>
-      You are now in study mode!
-      {title}
-      Displaying card {index}/{flashcards.length}
-      <StudyFlashcard flashcards={flashcards}/>
+    <div>
+      <div>{title}</div>
+      <div>
+        Displaying card {index}/{flashcards.length}
+      </div>
+      <StudyFlashcard activeFlashcard={activeFlashcard} />
+
       <button onClick={handlePrevious}>Previous</button>
       <button onClick={handleNext}>Next</button>
       <button onClick={handleRandom}>Random</button>
-    </>
+    </div>
   );
 }
 
