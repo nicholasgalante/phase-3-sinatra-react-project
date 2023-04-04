@@ -1,13 +1,17 @@
 import { Link, Route, Routes } from "react-router-dom";
 
-function StudySetCard({ set }) {
+function StudySetCard({ set, onActivateStudySet }) {
   const { title, id } = set;
+
+   function handleActivateStudySet(){
+      onActivateStudySet(id)
+   }
 
   return (
     <>
       {title}
       <Link to={"edit/" + id}>
-        <button>Edit</button>
+        <button onClick={handleActivateStudySet}>Edit</button>
       </Link>
       <Link to={"study/" + id}>
         <button>Study</button>

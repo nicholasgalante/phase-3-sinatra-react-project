@@ -7,7 +7,8 @@ import StudySetCard from "./StudySetCard";
 
 function App() {
   const [studySets, setStudySets] = useState([]);
-
+  const [activeStudySet, setActiveStudySet] = useState({});
+  
   useEffect(() => {
     fetch("http://localhost:9292/study_sets")
       .then((res) => res.json())
@@ -19,10 +20,15 @@ function App() {
     setStudySets(updatedStudySets);
   }
 
+  function onActivateStudySet(id){
+    const activatedSet = studySets.find(set => set.id == id)
+    setActiveStudySet(activatedSet)
+  }
+
   const displayStudySets = studySets.map((set) => {
     return (
       <div key={set.id}>
-        <StudySetCard set={set} />
+        <StudySetCard set={set} onActivateStudySet={onActivateStudySet}/>
       </div>
     );
   });
@@ -35,11 +41,11 @@ function App() {
           <Route path="/study_sets" element={displayStudySets} />
           <Route
             path="/study_sets/edit/:setId"
-            element={<EditMode onDeleteStudySet={handleDeleteStudySet} />}
+            element={<EditMode onDeleteStudySet={handleDeleteStudySet} activeStudySet={activeStudySet}/>}
           />
           <Route
             path="/study_sets/study/:setId"
-            element={<StudyMode studySets={studySets} />}
+            element={<StudyMode />}
           />
         </Routes>
       </BrowserRouter>

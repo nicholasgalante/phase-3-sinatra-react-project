@@ -2,18 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import EditFlashcard from "./EditFlashcard";
 
-function EditMode({ onDeleteStudySet }) {
-  const [activeStudySet, setActiveStudySet] = useState({});
+function EditMode({ onDeleteStudySet, activeStudySet, handleAddFlashcard }) {
+  //   const [activeStudySet, setActiveStudySet] = useState({});
   const [formData, setFormData] = useState({});
 
   const { title } = activeStudySet;
   const { setId } = useParams();
 
-  useEffect(() => {
-    fetch(`http://localhost:9292/study_sets/${setId}`)
-      .then((res) => res.json())
-      .then((data) => setActiveStudySet(data));
-  }, [setId]);
+  //is this good practice? Storage of study sets is not all stored in App state
+  //   useEffect(() => {
+  //     fetch(`http://localhost:9292/study_sets/${setId}`)
+  //       .then((res) => res.json())
+  //       .then((data) => setActiveStudySet(data));
+  //   }, [setId]);
 
   function onEditField(e) {
     setFormData({
@@ -45,22 +46,26 @@ function EditMode({ onDeleteStudySet }) {
     onDeleteStudySet(setId);
   }
 
-  function onAddFlashcard(newFlashcard) {
-    setActiveStudySet((prevStudySet) => {
-      return {
-        ...prevStudySet,
-        flashcards: [...prevStudySet.flashcards, newFlashcard],
-      };
-    });
+  function onAddFlashcard() {
+      handleAddFlashcard(id)
   }
 
+  //   function onAddFlashcard(newFlashcard) {
+  //     setActiveStudySet((prevStudySet) => {
+  //       return {
+  //         ...prevStudySet,
+  //         flashcards: [...prevStudySet.flashcards, newFlashcard],
+  //       };
+  //     });
+  //   }
+
   function onDeleteFlashcard(id) {
-    setActiveStudySet((prevStudySet) => {
-      const newFlashcards = prevStudySet.flashcards.filter(
-        (flashcard) => flashcard.id !== id
-      );
-      return { ...prevStudySet, flashcards: newFlashcards };
-    });
+    //  setActiveStudySet((prevStudySet) => {
+    //    const newFlashcards = prevStudySet.flashcards.filter(
+    //      (flashcard) => flashcard.id !== id
+    //    );
+    //    return { ...prevStudySet, flashcards: newFlashcards };
+    //  });
   }
 
   function displayFlashCards() {
