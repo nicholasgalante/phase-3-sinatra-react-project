@@ -16,7 +16,7 @@ function EditMode({ onDeleteStudySet, activeStudySet, handleAddFlashcard }) {
   //       .then((data) => setActiveStudySet(data));
   //   }, [setId]);
 
-  function onEditField(e) {
+  function handleChange(e) {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -87,14 +87,14 @@ function EditMode({ onDeleteStudySet, activeStudySet, handleAddFlashcard }) {
         <input
           name="title"
           type="text"
-          onChange={(e) => onEditField(e)}
+          onChange={(e) => handleChange(e)}
           placeholder="Title"
         ></input>
         <input
           name="content"
           type="text"
           placeholder="Content"
-          onChange={(e) => onEditField(e)}
+          onChange={(e) => handleChange(e)}
         ></input>
         <button type="submit">Add New Flashcard</button>
       </form>
