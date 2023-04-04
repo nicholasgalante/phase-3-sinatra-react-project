@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import EditFlashcard from "./EditFlashcard";
 
-function EditMode({ onDeleteStudySet, activeStudySet, handleAddFlashcard }) {
+function EditMode({ onDeleteStudySet, activeStudySet, onAddFlashcard }) {
   //   const [activeStudySet, setActiveStudySet] = useState({});
   const [formData, setFormData] = useState({});
 
@@ -34,7 +34,7 @@ function EditMode({ onDeleteStudySet, activeStudySet, handleAddFlashcard }) {
       body: JSON.stringify(formData),
     })
       .then((r) => r.json())
-      .then((newFlashcard) => onAddFlashcard(newFlashcard))
+      .then((newFlashcard) => handleAddFlashcard(newFlashcard))
       .catch((error) => console.error("Error occurred during fetch:", error));
     e.target.reset();
   }
@@ -46,8 +46,8 @@ function EditMode({ onDeleteStudySet, activeStudySet, handleAddFlashcard }) {
     onDeleteStudySet(setId);
   }
 
-  function onAddFlashcard() {
-      handleAddFlashcard(id)
+  function handleAddFlashcard() {
+      onAddFlashcard(id)
   }
 
   //   function onAddFlashcard(newFlashcard) {
