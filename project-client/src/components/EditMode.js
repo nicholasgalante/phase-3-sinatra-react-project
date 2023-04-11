@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import EditFlashcard from "./EditFlashcard";
 
-function EditMode({ onDeleteStudySet, selectedStudySet, onAddFlashcard }) {
+function EditMode({ onDeleteStudySet, selectedStudySet, onAddFlashcard, onDeleteFlashcard }) {
   //   const [activeStudySet, setActiveStudySet] = useState({});
   const [formData, setFormData] = useState({});
 
@@ -55,14 +55,15 @@ function EditMode({ onDeleteStudySet, selectedStudySet, onAddFlashcard }) {
   //     });
   //   }
 
-  function onDeleteFlashcard(id) {
+//   function onDeleteFlashcard(id) {
+//    console.log('clicked!')
     //  setActiveStudySet((prevStudySet) => {
     //    const newFlashcards = prevStudySet.flashcards.filter(
     //      (flashcard) => flashcard.id !== id
     //    );
     //    return { ...prevStudySet, flashcards: newFlashcards };
     //  });
-  }
+//   }
 
   function displayFlashCards() {
     if (selectedStudySet.flashcards) {
