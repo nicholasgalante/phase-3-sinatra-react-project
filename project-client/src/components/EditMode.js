@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import EditFlashcard from "./EditFlashcard";
 
-function EditMode({ onDeleteStudySet, activeStudySet, onAddFlashcard }) {
+function EditMode({ onDeleteStudySet, selectedStudySet, onAddFlashcard }) {
   //   const [activeStudySet, setActiveStudySet] = useState({});
   const [formData, setFormData] = useState({});
 
-  const { title } = activeStudySet;
+  const { title } = selectedStudySet;
   const { setId } = useParams();
 
   //is this good practice? Storage of study sets is not all stored in App state
@@ -34,7 +34,7 @@ function EditMode({ onDeleteStudySet, activeStudySet, onAddFlashcard }) {
       body: JSON.stringify(formData),
     })
       .then((r) => r.json())
-      .then((newFlashcard) => handleAddFlashcard(newFlashcard))
+      .then((newFlashcard) => onAddFlashcard(newFlashcard, setId))
       .catch((error) => console.error("Error occurred during fetch:", error));
     e.target.reset();
   }
@@ -44,10 +44,6 @@ function EditMode({ onDeleteStudySet, activeStudySet, onAddFlashcard }) {
       method: "DELETE",
     });
     onDeleteStudySet(setId);
-  }
-
-  function handleAddFlashcard() {
-      onAddFlashcard(id)
   }
 
   //   function onAddFlashcard(newFlashcard) {
@@ -69,8 +65,8 @@ function EditMode({ onDeleteStudySet, activeStudySet, onAddFlashcard }) {
   }
 
   function displayFlashCards() {
-    if (activeStudySet.flashcards) {
-      return activeStudySet.flashcards.map((card) => {
+    if (selectedStudySet.flashcards) {
+      return selectedStudySet.flashcards.map((card) => {
         return (
           <div key={card.id}>
             <EditFlashcard card={card} onDeleteFlashcard={onDeleteFlashcard} />
