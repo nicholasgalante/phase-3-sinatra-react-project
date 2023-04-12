@@ -7,13 +7,17 @@ import StudySetCard from "./StudySetCard";
 
 function App() {
   const [studySets, setStudySets] = useState([]);
-  const [selectedStudySet, setSelectedStudySet] = useState({});
+  const [selectedSetId, setSelectedSetId] = useState({});
 
   useEffect(() => {
     fetch("http://localhost:9292/study_sets")
       .then((res) => res.json())
       .then((data) => setStudySets(data));
   }, []);
+
+  function onSelectStudySet(id) {
+    setSelectedSetId(id);
+  }
 
   function onDeleteStudySet(id) {
     const updatedStudySets = studySets.filter((studySet) => studySet.id !== id);
@@ -34,13 +38,6 @@ function App() {
     });
   }
 
-  console.log("AFTER", studySets)
-
-  function onSelectStudySet(id) {
-    const set = studySets.find((set) => set.id == id);
-    setSelectedStudySet(set);
-  }
-
   function onAddFlashcard(newFlashcard, setId) { 
     setStudySets(prevStudySets => {
       const updatedSet = prevStudySets.find((set) => set.id == setId);
@@ -55,7 +52,8 @@ function App() {
   const displayStudySets = studySets.map((set) => {
     return (
       <div key={set.id}>
-        <StudySetCard set={set} onSelectStudySet={onSelectStudySet} />
+        <StudySetCard set={set} studySets={studySets} onSelectStudySet={onSelectStudySet} />
+
       </div>
     );
   });
@@ -72,8 +70,9 @@ function App() {
               <EditMode
                 onDeleteStudySet={onDeleteStudySet}
                 onDeleteFlashcard={onDeleteFlashcard}
-                selectedStudySet={selectedStudySet}
+                studySets={studySets}
                 onAddFlashcard={onAddFlashcard}
+                selectedSetId={selectedSetId}
               />
             }
           />

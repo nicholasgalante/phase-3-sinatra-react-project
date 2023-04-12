@@ -1,26 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import EditFlashcard from "./EditFlashcard";
 
-function EditMode({ onDeleteStudySet, selectedStudySet, onAddFlashcard, onDeleteFlashcard }) {
-  //   const [activeStudySet, setActiveStudySet] = useState({});
+function EditMode({ studySets, onDeleteStudySet, onAddFlashcard, onDeleteFlashcard, selectedSetId }) {
   const [formData, setFormData] = useState({});
 
-  const { title } = selectedStudySet;
-  const { setId } = useParams();
+  const selectedStudySet = studySets.find((set) => set.id === selectedSetId);
 
-  //is this good practice? Storage of study sets is not all stored in App state
-  //   useEffect(() => {
-  //     fetch(`http://localhost:9292/study_sets/${setId}`)
-  //       .then((res) => res.json())
-  //       .then((data) => setActiveStudySet(data));
-  //   }, [setId]);
+  if (!selectedStudySet) {
+   return <div>No study set selected</div>;
+ }
 
   function handleChange(e) {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-      study_set_id: setId,
+      study_set_id: selectedSetId,
     });
   }
 
@@ -34,36 +28,17 @@ function EditMode({ onDeleteStudySet, selectedStudySet, onAddFlashcard, onDelete
       body: JSON.stringify(formData),
     })
       .then((r) => r.json())
-      .then((newFlashcard) => onAddFlashcard(newFlashcard, setId))
+      .then((newFlashcard) => onAddFlashcard(newFlashcard, selectedSetId))
       .catch((error) => console.error("Error occurred during fetch:", error));
     e.target.reset();
   }
 
   function handleDeleteStudySet() {
-    fetch(`http://localhost:9292/study_sets/${setId}`, {
+    fetch(`http://localhost:9292/study_sets/${selectedSetId}`, {
       method: "DELETE",
     });
-    onDeleteStudySet(setId);
+    onDeleteStudySet(selectedSetId);
   }
-
-  //   function onAddFlashcard(newFlashcard) {
-  //     setActiveStudySet((prevStudySet) => {
-  //       return {
-  //         ...prevStudySet,
-  //         flashcards: [...prevStudySet.flashcards, newFlashcard],
-  //       };
-  //     });
-  //   }
-
-//   function onDeleteFlashcard(id) {
-//    console.log('clicked!')
-    //  setActiveStudySet((prevStudySet) => {
-    //    const newFlashcards = prevStudySet.flashcards.filter(
-    //      (flashcard) => flashcard.id !== id
-    //    );
-    //    return { ...prevStudySet, flashcards: newFlashcards };
-    //  });
-//   }
 
   function displayFlashCards() {
     if (selectedStudySet.flashcards) {
@@ -79,7 +54,7 @@ function EditMode({ onDeleteStudySet, selectedStudySet, onAddFlashcard, onDelete
 
   return (
     <>
-      {title}
+      {/* {title} */}
       <form onSubmit={handleSubmit}>
         <input
           name="title"
