@@ -4,7 +4,6 @@ import NavBar from "./NavBar";
 import EditDetails from "./EditDetails";
 import StudyDetails from "./StudyDetails";
 import StudySetList from "./StudySetList";
-import StudySetCreator from "./StudySetCreator";
 
 function App() {
   const [studySets, setStudySets] = useState([]);
@@ -52,11 +51,14 @@ function App() {
     });
   }
 
+  function onAddStudySet(newStudySet){
+    console.log(newStudySet)
+  }
+
   return (
     <div>
       <BrowserRouter>
         <NavBar />
-        <StudySetCreator/>
         <Routes>
           <Route
             path="/study_sets"
@@ -64,6 +66,7 @@ function App() {
               <StudySetList
                 studySets={studySets}
                 onSelectStudySet={onSelectStudySet}
+                onAddStudySet={onAddStudySet}
               />
             }
           />

@@ -1,6 +1,7 @@
 import StudySetCard from "./StudySetCard";
+import StudySetCreator from "./StudySetCreator";
 
-function StudySetList({ studySets, onSelectStudySet }) {
+function StudySetList({ studySets, onSelectStudySet, onAddStudySet }) {
   const displayStudySets = studySets.map((set) => {
     return (
       <div key={set.id}>
@@ -13,7 +14,12 @@ function StudySetList({ studySets, onSelectStudySet }) {
     );
   });
 
-  return <>{displayStudySets}</>;
+  return (
+    <>
+      <StudySetCreator onAddStudySet={onAddStudySet}/>
+      {displayStudySets}
+    </>
+  );
 }
 
 export default StudySetList;
