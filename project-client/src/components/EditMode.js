@@ -64,7 +64,7 @@ function EditMode({
 
   return (
     <>
-      {/* {title} */}
+      {selectedStudySet.title}
       <form onSubmit={handleSubmit}>
         <input
           name="title"
