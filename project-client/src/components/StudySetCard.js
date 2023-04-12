@@ -14,7 +14,7 @@ function StudySetCard({ set, onSelectStudySet }) {
         <button onClick={handleSelectStudySet}>Edit</button>
       </Link>
       <Link to={"study/" + id}>
-        <button>Study</button>
+        <button onClick={handleSelectStudySet}>Study</button>
       </Link>
     </div>
   );

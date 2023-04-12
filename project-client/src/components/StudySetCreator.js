@@ -24,7 +24,6 @@ function StudySetCreator({ onAddStudySet }) {
 
   return (
     <>
-      Create a New Study Set
       <form onSubmit={handleSubmit}>
         <input
           name="title"

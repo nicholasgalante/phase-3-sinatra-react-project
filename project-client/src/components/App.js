@@ -19,24 +19,9 @@ function App() {
     setSelectedSetId(id);
   }
 
-  function onDeleteStudySet(id) {
-    const updatedStudySets = studySets.filter((studySet) => studySet.id !== id);
-    setStudySets(updatedStudySets);
-  }
-
-  function onDeleteFlashcard(id) {
-    console.log("BEFORE", studySets);
+  function onAddStudySet(newStudySet) {
     setStudySets((prevStudySets) => {
-      const updatedSets = prevStudySets.map((set) => {
-        if (set.flashcards.some((card) => card.id === id)) {
-          const updatedFlashcards = set.flashcards.filter(
-            (card) => card.id !== id
-          );
-          return { ...set, flashcards: updatedFlashcards };
-        }
-        return set;
-      });
-      return updatedSets;
+      return [...prevStudySets, newStudySet];
     });
   }
 
@@ -51,10 +36,24 @@ function App() {
     });
   }
 
-  function onAddStudySet(newStudySet){
+  function onDeleteStudySet(id) {
+    const updatedStudySets = studySets.filter((studySet) => studySet.id !== id);
+    setStudySets(updatedStudySets);
+  }
+
+  function onDeleteFlashcard(id) {
     setStudySets((prevStudySets) => {
-      return [...prevStudySets, newStudySet]
-    })
+      const updatedSets = prevStudySets.map((set) => {
+        if (set.flashcards.some((card) => card.id === id)) {
+          const updatedFlashcards = set.flashcards.filter(
+            (card) => card.id !== id
+          );
+          return { ...set, flashcards: updatedFlashcards };
+        }
+        return set;
+      });
+      return updatedSets;
+    });
   }
 
   return (
@@ -84,7 +83,15 @@ function App() {
               />
             }
           />
-          <Route path="/study_sets/study/:setId" element={<StudyDetails />} />
+          <Route
+            path="/study_sets/study/:setId"
+            element={
+              <StudyDetails
+                selectedSetId={selectedSetId}
+                studySets={studySets}
+              />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

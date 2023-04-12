@@ -1,25 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
 import StudyFlashcard from "./StudyFlashcard";
 
-function StudyDetails() {
-  const [activeStudySet, setActiveStudySet] = useState({
-    id: null,
-    title: null,
-    content: null,
-    flashcards: [{ title: null, content: null }],
-  });
+function StudyDetails({ selectedSetId, studySets }) {
   const [index, setIndex] = useState(1);
 
-  const { setId } = useParams();
+  const selectedStudySet = studySets.find((set) => set.id === selectedSetId);
 
-  useEffect(() => {
-    fetch(`http://localhost:9292/study_sets/${setId}`)
-      .then((res) => res.json())
-      .then((data) => setActiveStudySet(data));
-  }, []);
+  if (!selectedStudySet) {
+    return <div>No study set selected</div>;
+  }
 
-  const { flashcards, title, content } = activeStudySet;
+  const { flashcards, title } = selectedStudySet;
 
   function handleNext() {
     setIndex((prevIndex) => {
