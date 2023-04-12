@@ -6,9 +6,16 @@ function StudyDetails({ selectedSetId, studySets }) {
 
   const selectedStudySet = studySets.find((set) => set.id === selectedSetId);
 
-  if (!selectedStudySet) {
-    return <div>No study set selected</div>;
+  if (selectedStudySet.flashcards.length < 1) {
+    return (
+      <div>
+        No flashcards exist for this study set! Return and click "edit" to add
+        flashcards.
+      </div>
+    );
   }
+
+  console.log(selectedStudySet);
 
   const { flashcards, title } = selectedStudySet;
 
