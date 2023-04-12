@@ -1,14 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import EditFlashcard from "./EditFlashcard";
 
-function EditMode({ studySets, onDeleteStudySet, onAddFlashcard, onDeleteFlashcard, selectedSetId }) {
+function EditMode({
+  studySets,
+  onDeleteStudySet,
+  onAddFlashcard,
+  onDeleteFlashcard,
+  selectedSetId,
+}) {
   const [formData, setFormData] = useState({});
 
   const selectedStudySet = studySets.find((set) => set.id === selectedSetId);
 
+  const navigate = useNavigate();
+
   if (!selectedStudySet) {
-   return <div>No study set selected</div>;
- }
+    return <div>No study set selected</div>;
+  }
 
   function handleChange(e) {
     setFormData({
@@ -38,6 +47,7 @@ function EditMode({ studySets, onDeleteStudySet, onAddFlashcard, onDeleteFlashca
       method: "DELETE",
     });
     onDeleteStudySet(selectedSetId);
+    navigate("/study_sets");
   }
 
   function displayFlashCards() {

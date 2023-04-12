@@ -3,9 +3,9 @@ import { Link, Route, Routes } from "react-router-dom";
 function StudySetCard({ set, onSelectStudySet }) {
   const { title, id } = set;
 
-   function handleSelectStudySet(){
-      onSelectStudySet(id)
-   }
+  function handleSelectStudySet() {
+    onSelectStudySet(id);
+  }
 
   return (
     <>
@@ -21,4 +21,3 @@ function StudySetCard({ set, onSelectStudySet }) {
 }
 
 export default StudySetCard;
-

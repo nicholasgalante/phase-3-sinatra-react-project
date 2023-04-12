@@ -25,11 +25,13 @@ function App() {
   }
 
   function onDeleteFlashcard(id) {
-    console.log("BEFORE", studySets)
-    setStudySets(prevStudySets => {
-      const updatedSets = prevStudySets.map(set => {
-        if (set.flashcards.some(card => card.id === id)) {
-          const updatedFlashcards = set.flashcards.filter(card => card.id !== id);
+    console.log("BEFORE", studySets);
+    setStudySets((prevStudySets) => {
+      const updatedSets = prevStudySets.map((set) => {
+        if (set.flashcards.some((card) => card.id === id)) {
+          const updatedFlashcards = set.flashcards.filter(
+            (card) => card.id !== id
+          );
           return { ...set, flashcards: updatedFlashcards };
         }
         return set;
@@ -38,8 +40,8 @@ function App() {
     });
   }
 
-  function onAddFlashcard(newFlashcard, setId) { 
-    setStudySets(prevStudySets => {
+  function onAddFlashcard(newFlashcard, setId) {
+    setStudySets((prevStudySets) => {
       const updatedSet = prevStudySets.find((set) => set.id == setId);
       const updatedFlashcards = [...updatedSet.flashcards, newFlashcard];
       const updatedSets = prevStudySets.map((set) =>
@@ -52,8 +54,11 @@ function App() {
   const displayStudySets = studySets.map((set) => {
     return (
       <div key={set.id}>
-        <StudySetCard set={set} studySets={studySets} onSelectStudySet={onSelectStudySet} />
-
+        <StudySetCard
+          set={set}
+          studySets={studySets}
+          onSelectStudySet={onSelectStudySet}
+        />
       </div>
     );
   });
