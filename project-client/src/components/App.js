@@ -52,7 +52,9 @@ function App() {
   }
 
   function onAddStudySet(newStudySet){
-    console.log(newStudySet)
+    setStudySets((prevStudySets) => {
+      return [...prevStudySets, newStudySet]
+    })
   }
 
   return (
