@@ -17,6 +17,10 @@ class ApplicationController < Sinatra::Base
     ).to_json
   end
 
+  post "/study_sets" do
+    StudySet.create(title: params[:title]).to_json
+  end
+
   get "/study_sets/:id" do
     StudySet.find(params[:id]).to_json(include: :flashcards)
   end
