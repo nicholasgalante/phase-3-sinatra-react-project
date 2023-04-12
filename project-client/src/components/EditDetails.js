@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EditFlashcard from "./EditFlashcard";
 
-function EditMode({
+function EditDetails({
   studySets,
   onDeleteStudySet,
   onAddFlashcard,
@@ -88,4 +88,4 @@ function EditMode({
   );
 }
 
-export default EditMode;
+export default EditDetails;

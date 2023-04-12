@@ -4,6 +4,7 @@ import NavBar from "./NavBar";
 import EditDetails from "./EditDetails";
 import StudyDetails from "./StudyDetails";
 import StudySetCard from "./StudySetCard";
+import StudySetList from "./StudySetList";
 
 function App() {
   const [studySets, setStudySets] = useState([]);
@@ -68,7 +69,7 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/study_sets" element={displayStudySets} />
+          <Route path="/study_sets" element={<StudySetList/>} />
           <Route
             path="/study_sets/edit/:setId"
             element={
