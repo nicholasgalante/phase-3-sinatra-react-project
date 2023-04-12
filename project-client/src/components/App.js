@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./NavBar";
 import EditDetails from "./EditDetails";
 import StudyDetails from "./StudyDetails";
-import StudySetCard from "./StudySetCard";
 import StudySetList from "./StudySetList";
+import StudySetCreator from "./StudySetCreator";
 
 function App() {
   const [studySets, setStudySets] = useState([]);
@@ -52,24 +52,21 @@ function App() {
     });
   }
 
-  const displayStudySets = studySets.map((set) => {
-    return (
-      <div key={set.id}>
-        <StudySetCard
-          set={set}
-          studySets={studySets}
-          onSelectStudySet={onSelectStudySet}
-        />
-      </div>
-    );
-  });
-
   return (
     <div>
       <BrowserRouter>
         <NavBar />
+        <StudySetCreator/>
         <Routes>
-          <Route path="/study_sets" element={<StudySetList/>} />
+          <Route
+            path="/study_sets"
+            element={
+              <StudySetList
+                studySets={studySets}
+                onSelectStudySet={onSelectStudySet}
+              />
+            }
+          />
           <Route
             path="/study_sets/edit/:setId"
             element={
