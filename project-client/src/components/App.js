@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./NavBar";
-import EditMode from "./EditMode";
-import StudyMode from "./StudyMode";
+import EditDetails from "./EditDetails";
+import StudyDetails from "./StudyDetails";
 import StudySetCard from "./StudySetCard";
 
 function App() {
@@ -72,7 +72,7 @@ function App() {
           <Route
             path="/study_sets/edit/:setId"
             element={
-              <EditMode
+              <EditDetails
                 onDeleteStudySet={onDeleteStudySet}
                 onDeleteFlashcard={onDeleteFlashcard}
                 studySets={studySets}
@@ -81,7 +81,7 @@ function App() {
               />
             }
           />
-          <Route path="/study_sets/study/:setId" element={<StudyMode />} />
+          <Route path="/study_sets/study/:setId" element={<StudyDetails />} />
         </Routes>
       </BrowserRouter>
     </div>
