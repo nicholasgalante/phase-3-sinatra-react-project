@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 
-function EditFlashcard({ card, onDeleteFlashcard }) {
-  const [flip, setFlip] = useState(true);
+function EditFlashcard({ card, studySets, onDeleteFlashcard }) {
+  const [formData, setFormData] = useState();
+  const [isEditing, setIsEditing] = useState(false);
   const { title, content, id } = card;
 
-  function handleEdit() {
-    setFlip(!flip);
+  // const selectedStudySet = studySets.find((set) => set.id === selectedSetId);
+
+  function handleEdit(e) {
+    setIsEditing(true);
   }
 
   function handleDelete() {
@@ -15,36 +18,40 @@ function EditFlashcard({ card, onDeleteFlashcard }) {
     onDeleteFlashcard(id);
   }
 
-  function onEditField() {}
+  function handleChange() {}
 
-  function handleSubmit() {}
+  function handleSubmit() {
+    
+  }
 
   return (
     <div>
-      {/* {flip ? flashcard info, edit button : form to edit flashcard, save button} */}
-
-      {/* front */}
-      {title}
-      {content}
-      <button onClick={handleEdit}>Edit</button>
-      <button onClick={handleDelete}>Delete</button>
-
-      {/* back */} 
-      <form onSubmit={handleSubmit}>
-        <input
-          name="title"
-          type="text"
-          onChange={(e) => onEditField(e)}
-          placeholder="Title"
-        ></input>
-        <input
-          name="content"
-          type="text"
-          placeholder="Content"
-          onChange={(e) => onEditField(e)}
-        ></input>
-        <button type="submit">Save Changes</button>
-      </form>
+      {isEditing ? (
+        <div>
+          <form onSubmit={handleSubmit}>
+            <input
+              name="title"
+              type="text"
+              onChange={(e) => handleChange(e)}
+              placeholder="Title"
+            ></input>
+            <input
+              name="content"
+              type="text"
+              placeholder="Content"
+              onChange={(e) => handleChange(e)}
+            ></input>
+            <button type="submit">Save Changes</button>
+          </form>
+        </div>
+      ) : (
+        <div>
+          {title}
+          {content}
+          <button onClick={handleEdit}>Edit</button>
+          <button onClick={handleDelete}>Delete</button>
+        </div>
+      )}
     </div>
   );
 }

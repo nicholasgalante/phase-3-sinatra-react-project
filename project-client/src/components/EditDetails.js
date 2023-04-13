@@ -55,7 +55,7 @@ function EditDetails({
       return selectedStudySet.flashcards.map((card) => {
         return (
           <div key={card.id}>
-            <EditFlashcard card={card} onDeleteFlashcard={onDeleteFlashcard} />
+            <EditFlashcard studySets={studySets} card={card} onDeleteFlashcard={onDeleteFlashcard} />
           </div>
         );
       });

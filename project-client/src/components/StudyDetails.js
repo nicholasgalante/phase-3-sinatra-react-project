@@ -15,8 +15,6 @@ function StudyDetails({ selectedSetId, studySets }) {
     );
   }
 
-  console.log(selectedStudySet);
-
   const { flashcards, title } = selectedStudySet;
 
   function handleNext() {
