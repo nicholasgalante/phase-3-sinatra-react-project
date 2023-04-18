@@ -9,12 +9,20 @@ class ApplicationController < Sinatra::Base
     Flashcard.all.to_json
   end
 
+  get "/flashcards/:id" do
+    Flashcard.find(params[:id]).to_json
+  end
+
   post "/flashcards" do
     Flashcard.create(
       title: params[:title],
       content: params[:content],
       study_set_id: params[:study_set_id],
     ).to_json
+  end
+
+  patch "/flashcards/:id" do
+    Flashcard.find(params[:id]).update(title: params[:title], content: params[:content]).to_json
   end
 
   post "/study_sets" do

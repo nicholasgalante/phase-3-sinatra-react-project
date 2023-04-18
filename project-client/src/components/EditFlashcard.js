@@ -18,10 +18,28 @@ function EditFlashcard({ card, studySets, onDeleteFlashcard }) {
     onDeleteFlashcard(id);
   }
 
-  function handleChange() {}
+  function handleChange(e) {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  }
 
-  function handleSubmit() {
-    
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("FORMDATA:", formData)
+    console.log(JSON.stringify(formData))
+    console.log(id)
+    fetch(`http://localhost:9292/flashcards/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((r) => r.json())
+      .then((updatedFlashcard) => console.log(updatedFlashcard));
+    setIsEditing(false);
   }
 
   return (
