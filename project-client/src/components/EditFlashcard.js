@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function EditFlashcard({ card, studySets, onDeleteFlashcard }) {
+function EditFlashcard({ card, studySets, onUpdateFlashcard, onDeleteFlashcard }) {
   const [formData, setFormData] = useState();
   const [isEditing, setIsEditing] = useState(false);
   const { title, content, id } = card;
@@ -25,11 +25,9 @@ function EditFlashcard({ card, studySets, onDeleteFlashcard }) {
     });
   }
 
+
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("FORMDATA:", formData)
-    console.log(JSON.stringify(formData))
-    console.log(id)
     fetch(`http://localhost:9292/flashcards/${id}`, {
       method: "PATCH",
       headers: {
@@ -38,7 +36,7 @@ function EditFlashcard({ card, studySets, onDeleteFlashcard }) {
       body: JSON.stringify(formData),
     })
       .then((r) => r.json())
-      .then((updatedFlashcard) => console.log(updatedFlashcard));
+      .then((updatedFlashcard) => onUpdateFlashcard(updatedFlashcard));
     setIsEditing(false);
   }
 

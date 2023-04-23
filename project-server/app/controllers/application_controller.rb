@@ -22,7 +22,9 @@ class ApplicationController < Sinatra::Base
   end
 
   patch "/flashcards/:id" do
-    Flashcard.find(params[:id]).update(title: params[:title], content: params[:content]).to_json
+    flashcard = Flashcard.find(params[:id])
+    flashcard.update(title: params[:title], content: params[:content])
+    flashcard.to_json
   end
 
   post "/study_sets" do

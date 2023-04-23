@@ -36,6 +36,24 @@ function App() {
     });
   }
 
+  function onUpdateFlashcard(updatedFlashcard){
+    console.log(updatedFlashcard)
+    // setStudySets((prevStudySets) => {
+    //   console.log(updatedFlashcard.studySetId)
+    //   const updatedStudySets = [...prevStudySets];
+    //   const studySetIndex = updatedStudySets.find(studySet => studySet.id === updatedFlashcard.studySetId);
+    //   const updatedStudySet = {...updatedStudySets[studySetIndex]};
+    //   const flashcardIndex = updatedStudySet.flashcards.find(flashcard => flashcard.id === updatedFlashcard.id);
+    //   updatedStudySet.flashcards[flashcardIndex] = updatedFlashcard;
+    //   updatedStudySets[studySetIndex] = updatedStudySet;
+    //   return updatedStudySets;
+    // })
+  }
+
+
+  console.log(studySets)
+  // const updatedSet = prevStudySets.find((set) => set.id == updatedFlashcard.id)
+
   function onDeleteStudySet(id) {
     const updatedStudySets = studySets.filter((studySet) => studySet.id !== id);
     setStudySets(updatedStudySets);
@@ -78,6 +96,7 @@ function App() {
                 onDeleteStudySet={onDeleteStudySet}
                 onDeleteFlashcard={onDeleteFlashcard}
                 studySets={studySets}
+                onUpdateFlashcard={onUpdateFlashcard}
                 onAddFlashcard={onAddFlashcard}
                 selectedSetId={selectedSetId}
               />
