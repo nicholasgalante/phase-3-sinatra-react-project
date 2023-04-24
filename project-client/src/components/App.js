@@ -36,23 +36,22 @@ function App() {
     });
   }
 
-  function onUpdateFlashcard(updatedFlashcard){
-    console.log(updatedFlashcard)
-    // setStudySets((prevStudySets) => {
-    //   console.log(updatedFlashcard.studySetId)
-    //   const updatedStudySets = [...prevStudySets];
-    //   const studySetIndex = updatedStudySets.find(studySet => studySet.id === updatedFlashcard.studySetId);
-    //   const updatedStudySet = {...updatedStudySets[studySetIndex]};
-    //   const flashcardIndex = updatedStudySet.flashcards.find(flashcard => flashcard.id === updatedFlashcard.id);
-    //   updatedStudySet.flashcards[flashcardIndex] = updatedFlashcard;
-    //   updatedStudySets[studySetIndex] = updatedStudySet;
-    //   return updatedStudySets;
-    // })
-  }
-
-
-  console.log(studySets)
-  // const updatedSet = prevStudySets.find((set) => set.id == updatedFlashcard.id)
+  function onUpdateFlashcard(updatedFlashcard) {
+    setStudySets((prevStudySets) => {
+      const updatedStudySets = [...prevStudySets];
+      // Find the study set
+      const updatedStudySetIndex = updatedStudySets.findIndex(studySet => studySet.id === updatedFlashcard.study_set_id);
+      const updatedStudySet = updatedStudySets[updatedStudySetIndex];
+      // Find the flashcard
+      const updatedFlashcardIndex = updatedStudySet.flashcards.findIndex(flashcard => flashcard.id === updatedFlashcard.id);
+      // Update/replace flashcard with updatedFlashcard
+      updatedStudySet.flashcards[updatedFlashcardIndex] = updatedFlashcard;
+      // Update/replace study set with updatedStudySet
+      updatedStudySets[updatedStudySetIndex] = updatedStudySet;
+      // Return updated study sets
+      return updatedStudySets;
+    })
+  }  
 
   function onDeleteStudySet(id) {
     const updatedStudySets = studySets.filter((studySet) => studySet.id !== id);
