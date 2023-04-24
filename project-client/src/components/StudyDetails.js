@@ -6,10 +6,10 @@ function StudyDetails({ selectedSetId, studySets }) {
 
   const selectedStudySet = studySets.find((set) => set.id === selectedSetId);
 
-  if (selectedStudySet.flashcards.length < 1) {
+  if (!selectedStudySet.flashcards.length) {
     return (
       <div>
-        No flashcards exist for this study set! Return and click "edit" to add
+        No flashcards exist for this study set. Return and click "edit" to add
         flashcards.
       </div>
     );
