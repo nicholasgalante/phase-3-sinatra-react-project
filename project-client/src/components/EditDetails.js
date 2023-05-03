@@ -65,26 +65,30 @@ function EditDetails({
 
   return (
     <>
-      {selectedStudySet.title}
-      <form onSubmit={handleSubmit}>
+      <div class="content m-6">
+        <h1>{selectedStudySet.title}</h1>
+      <form class="mb-6" onSubmit={handleSubmit}>
         <input
+        class="input"
           name="title"
           type="text"
           onChange={(e) => handleChange(e)}
           placeholder="Title"
         ></input>
         <input
+        class="input"
           name="content"
           type="text"
           placeholder="Content"
           onChange={(e) => handleChange(e)}
         ></input>
-        <button type="submit">Add New Flashcard</button>
+        <button class="button is-info" type="submit">Add New Flashcard</button>
       </form>
 
       {displayFlashCards()}
 
-      <button onClick={handleDeleteStudySet}>Delete Study Set</button>
+      <button class="button is-danger is-light" onClick={handleDeleteStudySet}>Delete Study Set</button>
+      </div>
     </>
   );
 }

@@ -8,14 +8,16 @@ function StudySetCard({ set, onSelectStudySet }) {
   }
 
   return (
-    <div>
-      {title}
-      <Link to={"edit/" + id}>
-        <button onClick={handleSelectStudySet}>Edit</button>
-      </Link>
-      <Link to={"study/" + id}>
-        <button onClick={handleSelectStudySet}>Study</button>
-      </Link>
+    <div class="card mb-6">
+      <div class="card-header-title">{title}</div>
+      <footer class="card-footer">
+        <a class="card-footer-item" onClick={handleSelectStudySet}>
+          <Link to={"edit/" + id}>Edit</Link>
+        </a>
+        <a class="card-footer-item" onClick={handleSelectStudySet}>
+          <Link to={"study/" + id}>Study</Link>
+        </a>
+      </footer>
     </div>
   );
 }

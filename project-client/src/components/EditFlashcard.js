@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-function EditFlashcard({ card, studySets, onUpdateFlashcard, onDeleteFlashcard }) {
+function EditFlashcard({
+  card,
+  studySets,
+  onUpdateFlashcard,
+  onDeleteFlashcard,
+}) {
   const [formData, setFormData] = useState();
   const [isEditing, setIsEditing] = useState(false);
   const { title, content, id } = card;
@@ -24,7 +29,6 @@ function EditFlashcard({ card, studySets, onUpdateFlashcard, onDeleteFlashcard }
       [e.target.name]: e.target.value,
     });
   }
-
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -61,11 +65,21 @@ function EditFlashcard({ card, studySets, onUpdateFlashcard, onDeleteFlashcard }
           </form>
         </div>
       ) : (
-        <div>
-          {title}
-          {content}
-          <button onClick={handleEdit}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
+        <div class="card mb-6">
+          <header class="card-header">
+            <p class="card-header-title">{title}</p>
+          </header>
+          <div class="card-content">
+            <div class="content">{content}</div>
+          </div>
+          <footer class="card-footer">
+            <a class="card-footer-item" onClick={handleEdit}>
+              Edit
+            </a>
+            <a class="card-footer-item" onClick={handleDelete}>
+              Delete
+            </a>
+          </footer>
         </div>
       )}
     </div>

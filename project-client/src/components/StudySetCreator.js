@@ -26,12 +26,13 @@ function StudySetCreator({ onAddStudySet }) {
     <>
       <form onSubmit={handleSubmit}>
         <input
+          class="input"
           name="title"
           type="text"
           onChange={(e) => handleChange(e)}
           placeholder="Title"
         ></input>
-        <button type="submit">Create New Study Set</button>
+        <button class="button is-info" type="submit">Create New Study Set</button>
       </form>
     </>
   );

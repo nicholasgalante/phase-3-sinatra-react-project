@@ -15,10 +15,12 @@ function StudySetList({ studySets, onSelectStudySet, onAddStudySet }) {
   });
 
   return (
-    <>
+    <div class="content m-6">
+      <div class="mb-6">
       <StudySetCreator onAddStudySet={onAddStudySet}/>
+      </div>
       {displayStudySets}
-    </>
+    </div>
   );
 }
 
