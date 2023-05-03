@@ -6,11 +6,15 @@ function EditFlashcard({
   onUpdateFlashcard,
   onDeleteFlashcard,
 }) {
-  const [formData, setFormData] = useState();
+  const [formData, setFormData] = useState(card);
   const [isEditing, setIsEditing] = useState(false);
   const { title, content, id } = card;
 
   // const selectedStudySet = studySets.find((set) => set.id === selectedSetId);
+  console.log("FORMDATA",formData)
+  console.log("CARD",card)
+  console.log("TITLE",title)
+  console.log("CONTENT", content)
 
   function handleEdit(e) {
     setIsEditing(true);
@@ -53,15 +57,15 @@ function EditFlashcard({
               name="title"
               type="text"
               onChange={(e) => handleChange(e)}
-              placeholder="Title"
+              value={formData.title}
             ></input>
             <input
               name="content"
               type="text"
-              placeholder="Content"
+              value={formData.content}
               onChange={(e) => handleChange(e)}
             ></input>
-            <button type="submit">Save Changes</button>
+            <button type="submit">Save Changes</button>              
           </form>
         </div>
       ) : (
