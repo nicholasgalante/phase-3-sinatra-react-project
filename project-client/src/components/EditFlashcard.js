@@ -11,10 +11,10 @@ function EditFlashcard({
   const { title, content, id } = card;
 
   // const selectedStudySet = studySets.find((set) => set.id === selectedSetId);
-  console.log("FORMDATA",formData)
-  console.log("CARD",card)
-  console.log("TITLE",title)
-  console.log("CONTENT", content)
+  console.log("FORMDATA", formData);
+  console.log("CARD", card);
+  console.log("TITLE", title);
+  console.log("CONTENT", content);
 
   function handleEdit(e) {
     setIsEditing(true);
@@ -51,21 +51,29 @@ function EditFlashcard({
   return (
     <div>
       {isEditing ? (
-        <div>
+        <div class="card mb-6">
           <form onSubmit={handleSubmit}>
-            <input
-              name="title"
-              type="text"
-              onChange={(e) => handleChange(e)}
-              value={formData.title}
-            ></input>
-            <input
+            <header class="card-header">
+              <textarea
+                name="title"
+                type="textarea"
+                onChange={(e) => handleChange(e)}
+                value={formData.title}
+              ></textarea>
+            </header>
+            <div class="card-content">
+            <textarea
               name="content"
-              type="text"
+              type="textarea"
               value={formData.content}
               onChange={(e) => handleChange(e)}
-            ></input>
-            <button type="submit">Save Changes</button>              
+            ></textarea>
+            </div>
+            <footer class="card-footer">
+              <button class="card-footer-item" type="submit">
+                Save Changes
+              </button>
+            </footer>
           </form>
         </div>
       ) : (
