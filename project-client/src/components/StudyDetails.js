@@ -37,16 +37,23 @@ function StudyDetails({ selectedSetId, studySets }) {
   const activeFlashcard = flashcards[index - 1];
 
   return (
-    <div>
-      <div>{title}</div>
-      <div>
+    <div class="content m-6">
+      <h1>{title}</h1>
+      <div class="mb-6">
         Displaying card {index}/{flashcards.length}
       </div>
       <StudyFlashcard activeFlashcard={activeFlashcard} />
-
-      <button onClick={handlePrevious}>Previous</button>
-      <button onClick={handleNext}>Next</button>
-      <button onClick={handleRandom}>Random</button>
+      <div class="buttons">
+        <button class="button is-info" onClick={handlePrevious}>
+          Previous
+        </button>
+        <button class="button is-info" onClick={handleNext}>
+          Next
+        </button>
+        <button class="button is-info" onClick={handleRandom}>
+          Random
+        </button>
+      </div>
     </div>
   );
 }

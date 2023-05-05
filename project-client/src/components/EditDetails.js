@@ -56,7 +56,12 @@ function EditDetails({
       return selectedStudySet.flashcards.map((card) => {
         return (
           <div key={card.id}>
-            <EditFlashcard studySets={studySets} card={card} onUpdateFlashcard={onUpdateFlashcard} onDeleteFlashcard={onDeleteFlashcard} />
+            <EditFlashcard
+              studySets={studySets}
+              card={card}
+              onUpdateFlashcard={onUpdateFlashcard}
+              onDeleteFlashcard={onDeleteFlashcard}
+            />
           </div>
         );
       });
@@ -67,27 +72,34 @@ function EditDetails({
     <>
       <div class="content m-6">
         <h1>{selectedStudySet.title}</h1>
-      <form class="mb-6" onSubmit={handleSubmit}>
-        <input
-        class="input"
-          name="title"
-          type="text"
-          onChange={(e) => handleChange(e)}
-          placeholder="Title"
-        ></input>
-        <input
-        class="input"
-          name="content"
-          type="text"
-          placeholder="Content"
-          onChange={(e) => handleChange(e)}
-        ></input>
-        <button class="button is-info" type="submit">Add New Flashcard</button>
-      </form>
+        <form class="mb-6" onSubmit={handleSubmit}>
+          <input
+            class="input"
+            name="title"
+            type="text"
+            onChange={(e) => handleChange(e)}
+            placeholder="Title"
+          ></input>
+          <input
+            class="input"
+            name="content"
+            type="text"
+            placeholder="Content"
+            onChange={(e) => handleChange(e)}
+          ></input>
+          <button class="button is-info" type="submit">
+            Add New Flashcard
+          </button>
+        </form>
 
-      {displayFlashCards()}
+        {displayFlashCards()}
 
-      <button class="button is-danger is-light" onClick={handleDeleteStudySet}>Delete Study Set</button>
+        <button
+          class="button is-danger is-light"
+          onClick={handleDeleteStudySet}
+        >
+          Delete Study Set
+        </button>
       </div>
     </>
   );

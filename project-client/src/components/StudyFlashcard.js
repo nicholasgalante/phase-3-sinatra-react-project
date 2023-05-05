@@ -8,8 +8,12 @@ function StudyFlashcard({ activeFlashcard }) {
   }
 
   return (
-    <div onClick={handleFlip}>
-      {flip ? activeFlashcard.title : activeFlashcard.content}
+    <div class="card mb-6" onClick={handleFlip}>
+      {flip ? (
+        <div class="card-content">{activeFlashcard.title} </div>
+      ) : (
+        <div class="card-content"> {activeFlashcard.content} </div>
+      )}
     </div>
   );
 }
